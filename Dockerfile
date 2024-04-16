@@ -15,10 +15,11 @@ COPY package.json $BASE_DIR
 
 WORKDIR $BASE_DIR
 # Install project dependencies
+ENV PORT=3100
 RUN yarn
 
 # Expose port 3000 to make the app accessible via the host machine's browser
-EXPOSE 3000
+EXPOSE 3100
 
 # Start the demo app
 CMD yarn start

@@ -14,7 +14,7 @@
 	// Use 'postCreateCommand' to run commands after the container is created. No caching.
 	"postCreateCommand": "sudo cp .devcontainer/first-run-notice.txt /workspaces/.codespaces/shared/first-run-notice.txt && yarn start",
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [3000],
+	"forwardPorts": [3100],
 	// Use 'hostRequirements' to set minimum machine specs
 	"hostRequirements": {
 		"cpus": 2,
