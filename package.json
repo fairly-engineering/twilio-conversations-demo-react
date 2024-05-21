@@ -48,7 +48,7 @@
     "build:wdio": "cd AutomationTests; npm install",
     "eject": "react-scripts eject",
     "generateCircleConfig": "npx ts-node --project tsconfig.tools.json ./tools/circle-config-generator/generate-circle-config.ts",
-    "start": "react-scripts start",
+    "start": "PORT=3100 react-scripts start",
     "test": "react-scripts test",
     "test:wdio": "cd AutomationTests; npm run wdio",
     "lint": "npx eslint src --ext .ts --ext .tsx",

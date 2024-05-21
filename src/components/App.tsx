@@ -16,23 +16,17 @@ function App(): ReactElement {
   const { login } = bindActionCreators(actionCreators, dispatch);
   const token = useSelector((state: AppState) => state.token);
 
-  const username = localStorage.getItem("username") ?? "";
-  const password = localStorage.getItem("password") ?? "";
-
   useEffect(() => {
-    if (username.length > 0 && password.length > 0) {
-      getToken(username, password)
-        .then((token) => {
-          login(token);
-        })
-        .catch(() => {
-          localStorage.setItem("username", "");
-          localStorage.setItem("password", "");
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
+    getToken()
+      .then((token) => {
+        login(token);
+      })
+      .catch(() => {
+        console.error("Failed to get token");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   const setToken = (token: string) => {
@@ -40,7 +34,7 @@ function App(): ReactElement {
     setLoading(false);
   };
 
-  if ((!token && !loading) || !username || !password) {
+  if (!token && !loading) {
     return <Login setToken={setToken} />;
   }
 

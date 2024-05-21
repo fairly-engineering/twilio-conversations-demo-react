@@ -154,10 +154,7 @@ export async function updateFriendlyName(
   }
 }
 
-export async function getToken(
-  username: string,
-  password: string
-): Promise<string> {
+export async function getToken(): Promise<string> {
   const requestAddress = process.env
     .REACT_APP_ACCESS_TOKEN_SERVICE_URL as string;
   if (!requestAddress) {
@@ -167,10 +164,12 @@ export async function getToken(
   }
 
   try {
-    const response = await axios.get(requestAddress, {
-      params: { identity: username, password: password },
-    });
-    return response.data;
+    const response = await axios.post(
+      requestAddress,
+      {},
+      { withCredentials: true }
+    );
+    return response.data.token;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response?.status === 401) {
       throw new Error(error.response.data ?? "Authentication error.");
