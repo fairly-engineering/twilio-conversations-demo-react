@@ -233,7 +233,7 @@ const AppContainer: React.FC = () => {
 
     client.on("tokenAboutToExpire", async () => {
       if (username && password) {
-        const token = await getToken(username, password);
+        const token = await getToken();
         await client.updateToken(token);
         login(token);
       }
@@ -241,7 +241,7 @@ const AppContainer: React.FC = () => {
 
     client.on("tokenExpired", async () => {
       if (username && password) {
-        const token = await getToken(username, password);
+        const token = await getToken();
         login(token);
         setClientIteration((x) => x + 1);
       }
